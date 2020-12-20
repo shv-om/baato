@@ -1,6 +1,8 @@
 This is a sample code for sharing files form one windows system to another system using the Wifi Direct.
 This code is capable of sharing files at a speed of 40 Mb/s.
 
+Note: Speed increases when both the devices are connected without Internet connection. (hostednetwork adapter in windows 10)
+
 Just an example of how peer to peer connections work using Python3
 
 How to use:
