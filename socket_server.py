@@ -5,6 +5,7 @@ Python code file for Server Side executables
 import os
 import json
 import socket
+import time
 
 # Defining some Global Variables
 CHUNK = 1024
@@ -58,6 +59,8 @@ class socket_server:
 
 		self.header_details = self.defining_header()	# Calling function to defining the Header
 
+		st = time.time()
+
 		# Sending dictionary after converting into json object as byte data
 		self.connection.send(bytes(json.dumps(self.header_details).encode()))
 		print(self.header_details)
@@ -83,6 +86,9 @@ class socket_server:
 		print("Data has been transmitted successfully")
 
 		self.connection.close()	# Closing the connection
+
+		et = time.time()
+		print("\nFile share in {} seconds\n".format(et-st))
 
 
 server_object = socket_server()
