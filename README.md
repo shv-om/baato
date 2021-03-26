@@ -1,4 +1,6 @@
 
+## The secured code is implemented on this branch 
+
 This is a sample code for sharing files form one windows system to another system using the Wifi Direct.
 This code is capable of sharing files at a speed of 40 Mb/s.
 
