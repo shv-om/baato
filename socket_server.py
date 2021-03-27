@@ -1,5 +1,6 @@
 """
-Python code file for Server Side executables
+Python code file for Server Side executables!
+File(s) will be shared from here
 """
 
 import os
@@ -13,31 +14,54 @@ CHUNK = 1024
 class socket_server:
 
 	def __init__(self):
-
-		self.header_details = {}
-
-		# Getting the filenames from the Input to send to the client
-		self.filelist = input("Please provide the filename with extention to share separated by ',' : ").split(', ')
-
-		# Creating Socket Object
-		self.sock_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		########################
 
 		# Defining Hostname and Port
-		self.host = socket.gethostbyname('0.0.0.0')
+		self.host = input("Specify host's URL or IP-Address (just press enter to use default): ")
+		if self.host is None:
+			self.host = '0.0.0.0'
+		
+		# Creating Socket
+		self.sock_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		
+		self.host = socket.gethostbyname(self.host)
 		self.port = 8080
+
+		# file(s') header
+		self.header_details = {}
+		# list of files that are to be send
+		self.filelist = []
+
+		#########################
 
 		# Binding socket with the host and port
 		self.sock_server.bind((self.host, self.port))
 		self.sock_server.listen(5)
 
 		print('Test server Listening on Host : {0}'.format(self.host))
-
+		
+		#########################
+		
 		# Accepting the Connections of the client willing to connect
 		self.connection, self.address = self.sock_server.accept()
-		print(f"Connection from {self.address} has been established!!!")
+		print(f"Connection from {self.address} (reciver) has been established!!!")
+
+
+	def __loadFiles__(self):
+		# Getting the filenames from the Input to send to the client
+		totalFiles = int(input("How many files you want to share: "))
+		filenames = []
+
+		for i in range(totalFiles):
+			filename = input("Enter the name (including complete path) of file-{}: ".format(i+1))
+			filenames.append(filename)
+		
+		return filenames
 
 
 	def defining_header(self):
+		self.filelist = self.__loadFiles__()
+
 		i = 1
 		temp_header = {}
 
@@ -56,7 +80,7 @@ class socket_server:
 		return temp_header
 
 	def server(self):
-
+		
 		self.header_details = self.defining_header()	# Calling function to defining the Header
 
 		st = time.time()
@@ -83,13 +107,24 @@ class socket_server:
 
 			f.close()	# Closing the file
 
-		print("Data has been transmitted successfully")
+		et = time.time()
+		print("\nFile(s) shared in {} seconds!".format((et-st)*1000))
 
 		self.connection.close()	# Closing the connection
 
-		et = time.time()
-		print("\nFile share in {} seconds\n".format(et-st))
-
+############
 
 server_object = socket_server()
-server_object.server()
+flag = True
+
+while flag:
+	server_object.server()
+	choice = input("Wanna send more files? (Y/N): ")
+	if choice not in ['Y', 'y']:
+		flag = False
+
+print("Thanks for using Baato!!")
+
+
+
+

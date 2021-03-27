@@ -26,6 +26,7 @@ class socket_client:
 
 
 	def client(self):
+		
 		# Receiving the Header for the Main Data
 		detail_header = self.sock_client.recv(CHUNK)
 
@@ -54,9 +55,17 @@ class socket_client:
 
 		print("File has been received...")
 
-		print("Closing the Connection")
+		###########
+	
 		self.sock_client.close()	# Closing the Connection
 
+############
 
 client_object = socket_client()
-client_object.client()
+flag = True
+
+while flag:
+	client_object.client()
+	choice = input("Wanna receive more files? (Y/N): ")
+	if choice not in ['Y', 'y']:
+		flag = False
