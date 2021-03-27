@@ -21,11 +21,15 @@ class socket_client:
 		self.port = 8080
 
 		# Binding socket with the host and port
-		self.sock_client.connect((self.host, self.port))
-		print("Connected...")
+		try:
+			self.sock_client.connect((self.host, self.port))
+			print("Connected...")
+		except ConnectionRefusedError:
+			print("Currently server is down!! Try later!")
 
 
 	def client(self):
+		
 		# Receiving the Header for the Main Data
 		detail_header = self.sock_client.recv(CHUNK)
 
@@ -54,9 +58,5 @@ class socket_client:
 
 		print("File has been received...")
 
-		print("Closing the Connection")
+		###########
 		self.sock_client.close()	# Closing the Connection
-
-
-client_object = socket_client()
-client_object.client()
