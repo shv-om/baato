@@ -113,7 +113,7 @@ class socket_server:
 		self.connection.close()	# Closing the connection
 
 ############
-
+'''
 server_object = socket_server()
 flag = True
 
@@ -124,7 +124,7 @@ while flag:
 		flag = False
 
 print("Thanks for using Baato!!")
-
+'''
 
 
 

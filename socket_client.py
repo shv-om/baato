@@ -21,8 +21,11 @@ class socket_client:
 		self.port = 8080
 
 		# Binding socket with the host and port
-		self.sock_client.connect((self.host, self.port))
-		print("Connected...")
+		try:
+			self.sock_client.connect((self.host, self.port))
+			print("Connected...")
+		except ConnectionRefusedError:
+			print("Currently server is down!! Try later!")
 
 
 	def client(self):
@@ -56,16 +59,4 @@ class socket_client:
 		print("File has been received...")
 
 		###########
-	
 		self.sock_client.close()	# Closing the Connection
-
-############
-
-client_object = socket_client()
-flag = True
-
-while flag:
-	client_object.client()
-	choice = input("Wanna receive more files? (Y/N): ")
-	if choice not in ['Y', 'y']:
-		flag = False
