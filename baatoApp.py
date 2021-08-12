@@ -2,7 +2,10 @@ import socket_server as sender
 import socket_client as receiver
 
 def menu():
-    mainMenu = "Menu\n"+"-"*6+"\n\n1. Send Files! \n2. Receive Files!"
+    mainMenu = '''\t***Menu***
+            \t1. Send Files!
+            \t2. Receive Files!
+        '''
 
     print(mainMenu)
     ch = input("Enter your choice: ")
@@ -29,7 +32,6 @@ def app():
         print("Something went wrong!!")
         return False
 
-################
 
 if __name__ == '__main__':
     flag = True

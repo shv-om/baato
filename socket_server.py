@@ -14,7 +14,6 @@ CHUNK = 1024
 class socket_server:
 
 	def __init__(self):
-		########################
 
 		# Defining Hostname and Port
 		self.host = input("Specify host's URL or IP-Address (just press enter to use default): ")
@@ -32,15 +31,11 @@ class socket_server:
 		# list of files that are to be send
 		self.filelist = []
 
-		#########################
-
 		# Binding socket with the host and port
 		self.sock_server.bind((self.host, self.port))
 		self.sock_server.listen(5)
 
 		print('Test server Listening on Host : {0}'.format(self.host))
-		
-		#########################
 		
 		# Accepting the Connections of the client willing to connect
 		self.connection, self.address = self.sock_server.accept()

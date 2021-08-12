@@ -45,12 +45,13 @@ class socket_client:
 
 				# Writing the received data to the file opened
 				# Checking If the file size exceeds the original file size
-				# while detail_header['filesize'] != len(f.read()):
 				while detail_header[str(i)]['filesize'] > f.tell():
 					file_data = self.sock_client.recv(CHUNK)
+					
 					if not file_data:	# Checking if the File Ends
 						print("Here")
 						break
+					
 					f.write(file_data)
 				print(f.tell())
 
@@ -58,5 +59,4 @@ class socket_client:
 
 		print("File has been received...")
 
-		###########
 		self.sock_client.close()	# Closing the Connection
