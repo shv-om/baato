@@ -106,20 +106,3 @@ class socket_server:
 		print("\nFile(s) shared in {} seconds!".format((et-st)*1000))
 
 		self.connection.close()	# Closing the connection
-
-############
-'''
-server_object = socket_server()
-flag = True
-
-while flag:
-	server_object.server()
-	choice = input("Wanna send more files? (Y/N): ")
-	if choice not in ['Y', 'y']:
-		flag = False
-
-print("Thanks for using Baato!!")
-'''
-
-
-
