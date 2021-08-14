@@ -74,7 +74,7 @@ class socket_server:
 
 		return temp_header
 
-	def server(self):
+	def send(self):
 		
 		self.header_details = self.defining_header()	# Calling function to defining the Header
 

@@ -28,7 +28,7 @@ class socket_client:
 			print("Currently server is down!! Try later!")
 
 
-	def client(self):
+	def recieve(self):
 		
 		# Receiving the Header for the Main Data
 		detail_header = self.sock_client.recv(CHUNK)
