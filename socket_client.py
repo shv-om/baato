@@ -37,10 +37,14 @@ class socket_client:
 		detail_header = json.loads(detail_header)
 		print(detail_header)
 
-		for i in range(1, len(detail_header) + 1):
+		pathname = input("Enter a folder path where you want to recieve those files: ")
+
+		for i in range(len(detail_header)):
 
 			# Opening new file to write the receiving data
-			with open(detail_header[str(i)]['filename'], 'wb') as f:
+			filename = os.path.join(pathname, detail_header[str(i)]['filename'])
+
+			with open(filename, 'wb') as f:
 				print("file Opened")
 
 				# Writing the received data to the file opened

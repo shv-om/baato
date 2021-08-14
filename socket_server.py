@@ -44,33 +44,34 @@ class socket_server:
 
 	def __loadFiles__(self):
 		# Getting the filenames from the Input to send to the client
-		totalFiles = int(input("How many files you want to share: "))
-		filenames = []
+		# totalFiles = int(input("How many files you want to share: "))
+		# filenames = []
 
-		for i in range(totalFiles):
-			filename = input("Enter the name (including complete path) of file-{}: ".format(i+1))
-			filenames.append(filename)
-		
-		return filenames
+		# for i in range(totalFiles):
+		# 	filename = input("Enter the name (including complete path) of file-{}: ".format(i+1))
+		# 	filenames.append(filename)
+
+
+		files = input("Enter the names (including complete path) separated by comma (,): ").split(', ')
+
+		return files
 
 
 	def defining_header(self):
 		self.filelist = self.__loadFiles__()
 
-		i = 1
 		temp_header = {}
 
 		# Defining Data Dictionary Meta Data
-		for filename in self.filelist:
+		for i in range(len(self.filelist)):
 			# Checking File Size
-			filesize = os.stat(filename).st_size
+			filesize = os.stat(self.filelist[i]).st_size
 
 			# Defining header to send as MetaData
 			temp_header[i] = {
-								'filename' : filename,
-								'filesize' : filesize,
-							}
-			i += 1
+							'filename' : self.filelist[i],
+							'filesize' : filesize,
+						}
 
 		return temp_header
 
